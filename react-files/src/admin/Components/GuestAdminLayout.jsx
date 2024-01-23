@@ -2,7 +2,9 @@ import React from 'react';
 
 function GuestAdminLayout(props) {
     return (
-        <div></div>
+        <div>
+
+        </div>
     );
 }
 
