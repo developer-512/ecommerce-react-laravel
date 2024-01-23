@@ -1,13 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class GuestAdminLayout extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        );
-    }
+function GuestAdminLayout(props) {
+    return (
+        <div></div>
+    );
 }
 
 export default GuestAdminLayout;
