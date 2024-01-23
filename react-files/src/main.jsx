@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import {RouterProvider} from "react-router-dom";
 import router from "./router.jsx";
 import {ContextProvider} from "./admin/Context/AdminContextProvider.jsx";
-import routerAdmin from "./admin/routerAdmin.jsx";
+import RouterAdmin from "./admin/routerAdmin.jsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -13,9 +13,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 
 ReactDOM.createRoot(document.getElementById('root-admin')).render(
+    // <React.StrictMode>
+    //     <ContextProvider>
+            // <RouterProvider router={routerAdmin}/>
+        // </ContextProvider>
+    // </React.StrictMode>
+
     <React.StrictMode>
-        {/*<ContextProvider>*/}
-            <RouterProvider router={routerAdmin}/>
-        {/*</ContextProvider>*/}
+            <RouterProvider router={RouterAdmin} />
     </React.StrictMode>
 );
+
