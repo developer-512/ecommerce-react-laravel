@@ -13,11 +13,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 
 ReactDOM.createRoot(document.getElementById('root-admin')).render(
-    // <React.StrictMode>
-    //     <ContextProvider>
-            // <RouterProvider router={routerAdmin}/>
-        // </ContextProvider>
-    // </React.StrictMode>
 
     <React.StrictMode>
             <RouterProvider router={RouterAdmin} />

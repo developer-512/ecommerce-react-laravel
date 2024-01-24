@@ -1,12 +1,31 @@
 import {createBrowserRouter} from "react-router-dom";
 import Dashboard from "./views/dashboard.jsx";
+import DefaultAdminLayout from "./Components/DefaultAdminLayout.jsx";
+import GuestAdminLayout from "./Components/GuestAdminLayout.jsx";
+import Login from "./views/Login.jsx";
 
 
 const RouterAdmin=createBrowserRouter([
     // Admin routes
     {
-        path:'admin',
-        element:<Dashboard/>
+        path:'/admin',
+        element:<DefaultAdminLayout/>,
+        children:[
+            {
+                path:'/admin',
+                element:<Dashboard/>
+            }
+        ]
+    },
+    {
+        path:'/admin/login',
+        element:<GuestAdminLayout/>,
+        children:[
+            {
+                path: '/admin/login',
+                element: <Login/>
+            }
+        ]
     }
 ]);
 
