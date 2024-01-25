@@ -1,7 +1,7 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
 
-function DefaultAdminLayout(props) {
+function DefaultLayout(props) {
     return (
         <div>
             <h4>Header</h4>
@@ -13,4 +13,4 @@ function DefaultAdminLayout(props) {
     );
 }
 
-export default DefaultAdminLayout;
+export default DefaultLayout;
