@@ -5,9 +5,14 @@ import router from "./router.jsx";
 
 import './assets/css/libs.bundle.css';
 import './assets/css/theme.bundle.css';
+import './assets/js/theme.bundle.js';
+import './assets/js/vendor.bundle.js';
+import {ContextProvider} from "./Context/ContextProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <RouterProvider router={router}/>
+      <ContextProvider>
+          <RouterProvider router={router}/>
+      </ContextProvider>
   </React.StrictMode>,
 )
