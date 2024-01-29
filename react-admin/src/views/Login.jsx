@@ -1,6 +1,10 @@
 import React from 'react';
 import happinessimg from '../assets/img/illustrations/happiness.svg';
 const Login = () => {
+
+    function LoginUser() {
+       alert('Logged in');
+    }
     return (
     <div className="container">
         <div className="row align-items-center">
@@ -21,7 +25,7 @@ const Login = () => {
                     Free access to our dashboard.
                 </p>
 
-                <form>
+                <form onSubmit={LoginUser}>
 
                     <div className="form-group">
 

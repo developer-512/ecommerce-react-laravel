@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import {Navigate, Outlet} from "react-router-dom";
+import {Link, Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../Context/ContextProvider.jsx";
 import logo from '../assets/img/logo.svg';
 import avatar from '../assets/img/avatars/profiles/avatar-1.jpg';
+
 function DefaultLayout(props) {
     const {user,token,setUser,setToken}=useStateContext();
-
-    /*if (!token){
-        return <Navigate to='/admin/login'/>
-    }*/
+    // if (!token){
+    //     return <Navigate to={props.routes.login}/>
+    // }
     return (
         <>
             <nav className="navbar navbar-vertical fixed-start navbar-expand-md navbar-light" id="sidebar">
@@ -18,9 +18,9 @@ function DefaultLayout(props) {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <a className="navbar-brand" href="">
+                    <Link className="navbar-brand" href="" to={props.routes.dashboard}>
                         <img src={logo} className="navbar-brand-img mx-auto" alt="..."/>
-                    </a>
+                    </Link>
 
                     <div className="navbar-user d-md-none">
 
@@ -59,9 +59,36 @@ function DefaultLayout(props) {
                         <ul className="navbar-nav">
 
                             <li className="nav-item">
-                                <a className="nav-link " href="./widgets.html">
+                                <Link className="nav-link "  to={props.routes.dashboard}>
                                     <i className="fe fe-home"></i> Dashboard
-                                </a>
+                                </Link>
+                            </li>
+
+                            <li className="nav-item">
+                                <Link className="nav-link " to="#sidebarComponents" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarComponents">
+                                    <i className="fe fe-package"></i> Products
+                                </Link>
+                                <div className="collapse " id="sidebarComponents" >
+                                    <ul className="nav nav-sm flex-column">
+                                        <li>
+                                            <Link to={props.routes.products} className="nav-link">
+                                                Products
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to={props.routes.categories} className="nav-link">
+                                                Categories
+                                            </Link>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li className="nav-item">
+                                <Link to={props.routes.adminmembers} className="nav-link ">
+                                    <i className='fe fe-users'></i>Admin Members
+                                </Link>
                             </li>
 
                         </ul>
