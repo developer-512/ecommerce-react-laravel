@@ -1,9 +1,26 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import happinessimg from '../assets/img/illustrations/happiness.svg';
+import axiosClient from "../axios-client.js";
+import {useStateContext} from "../Context/ContextProvider.jsx";
 const Login = () => {
-
-    function LoginUser() {
-       alert('Logged in');
+    const {setUser,setToken}=useStateContext();
+    const emailRef=createRef();
+    const passwordRef=createRef();
+    const LoginUser = (ev) => {
+      ev.preventDefault();
+        const payload={
+            email:emailRef.current.value,
+            password:passwordRef.current.value,
+        }
+        axiosClient.post('/admin/login',payload)
+            .then(({data})=>{
+                setUser(data.user)
+                setToken(data.token)
+            })
+            .catch((err)=>{
+                const response = err.response;
+                alert(response.status)
+            })
     }
     return (
     <div className="container">
@@ -22,7 +39,7 @@ const Login = () => {
                 </h1>
 
                 <p className="text-muted text-center mb-5">
-                    Free access to our dashboard.
+                    Become a seller on EC-Techs
                 </p>
 
                 <form onSubmit={LoginUser}>
@@ -33,7 +50,7 @@ const Login = () => {
                             Email Address
                         </label>
 
-                        <input type="email" className="form-control" placeholder="name@address.com"/>
+                        <input type="email" ref={emailRef} className="form-control" placeholder="name@address.com"/>
 
                     </div>
 
@@ -57,7 +74,7 @@ const Login = () => {
 
                         <div className="input-group input-group-merge">
 
-                            <input className="form-control" type="password" placeholder="Enter your password"/>
+                            <input className="form-control" ref={passwordRef} type="password" placeholder="Enter your password"/>
 
                                 <span className="input-group-text">
                   <i className="fe fe-eye"></i>
@@ -70,11 +87,11 @@ const Login = () => {
                         Sign in
                     </button>
 
-                    <div className="text-center">
-                        <small className="text-muted text-center">
-                            Don't have an account yet? <a href="">Sign up</a>.
-                        </small>
-                    </div>
+                    {/*<div className="text-center">*/}
+                    {/*    <small className="text-muted text-center">*/}
+                    {/*        Don't have an account yet? <a href="">Sign up</a>.*/}
+                    {/*    </small>*/}
+                    {/*</div>*/}
 
                 </form>
 

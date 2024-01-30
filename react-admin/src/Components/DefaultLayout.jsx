@@ -3,12 +3,25 @@ import {Link, Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../Context/ContextProvider.jsx";
 import logo from '../assets/img/logo.svg';
 import avatar from '../assets/img/avatars/profiles/avatar-1.jpg';
+import axiosClient from "../axios-client.js";
 
 function DefaultLayout(props) {
     const {user,token,setUser,setToken}=useStateContext();
     console.log(token);
     if (!token){
         return <Navigate to={props.routes.login}/>
+    }
+    function LogoutAdmin(ev) {
+        ev.preventDefault();
+        axiosClient.post('/admin/logout')
+            .then(()=>{
+                setUser({})
+                setToken(null)
+            })
+            .catch((err)=>{
+                const response = err.response;
+                alert(response.status)
+            })
     }
     return (
         <>
@@ -60,7 +73,7 @@ function DefaultLayout(props) {
                         <ul className="navbar-nav">
 
                             <li className="nav-item">
-                                <Link className="nav-link "  to={props.routes.dashboard}>
+                                <Link className="nav-link " to={props.routes.dashboard}>
                                     <i className="fe fe-home"></i> Dashboard
                                 </Link>
                             </li>
@@ -91,53 +104,48 @@ function DefaultLayout(props) {
                                     <i className='fe fe-users'></i>Admin Members
                                 </Link>
                             </li>
-
                         </ul>
-
-
-
-
-
-
                             <div className="mt-auto"></div>
+                        <div className="navbar-user d-none d-md-flex" id="sidebarUser">
+                            <button className='btn btn-danger' onClick={LogoutAdmin}><i className='fe fe-log-out'></i>Logout</button>
+                            {/*<Link to={}></Link>*/}
+                        </div>
 
+                {/*            <div className="navbar-user d-none d-md-flex" id="sidebarUser">*/}
 
-                            <div className="navbar-user d-none d-md-flex" id="sidebarUser">
+                {/*                <a className="navbar-user-link" data-bs-toggle="offcanvas" href="#sidebarOffcanvasActivity" aria-controls="sidebarOffcanvasActivity">*/}
+                {/*<span className="icon">*/}
+                {/*  <i className="fe fe-bell"></i>*/}
+                {/*</span>*/}
+                {/*                </a>*/}
 
-                                <a className="navbar-user-link" data-bs-toggle="offcanvas"
-                                   href="#sidebarOffcanvasActivity" aria-controls="sidebarOffcanvasActivity">
-                <span className="icon">
-                  <i className="fe fe-bell"></i>
-                </span>
-                                </a>
+                {/*                <div className="dropup">*/}
 
-                                <div className="dropup">
+                {/*                    <a href="#" id="sidebarIconCopy" className="dropdown-toggle" role="button"*/}
+                {/*                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">*/}
+                {/*                        <div className="avatar avatar-sm avatar-online">*/}
+                {/*                            <img src="./assets/img/avatars/profiles/avatar-1.jpg"*/}
+                {/*                                 className="avatar-img rounded-circle" alt="..."/>*/}
+                {/*                        </div>*/}
+                {/*                    </a>*/}
 
-                                    <a href="#" id="sidebarIconCopy" className="dropdown-toggle" role="button"
-                                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <div className="avatar avatar-sm avatar-online">
-                                            <img src="./assets/img/avatars/profiles/avatar-1.jpg"
-                                                 className="avatar-img rounded-circle" alt="..."/>
-                                        </div>
-                                    </a>
+                {/*                    <div className="dropdown-menu" aria-labelledby="sidebarIconCopy">*/}
+                {/*                        <a href="./profile-posts.html" className="dropdown-item">Profile</a>*/}
+                {/*                        <a href="./account-general.html" className="dropdown-item">Settings</a>*/}
+                {/*                        <hr className="dropdown-divider"/>*/}
+                {/*                            <a href="./sign-in.html" className="dropdown-item">Logout</a>*/}
+                {/*                    </div>*/}
 
-                                    <div className="dropdown-menu" aria-labelledby="sidebarIconCopy">
-                                        <a href="./profile-posts.html" className="dropdown-item">Profile</a>
-                                        <a href="./account-general.html" className="dropdown-item">Settings</a>
-                                        <hr className="dropdown-divider"/>
-                                            <a href="./sign-in.html" className="dropdown-item">Logout</a>
-                                    </div>
+                {/*                </div>*/}
 
-                                </div>
+                {/*                <a className="navbar-user-link" data-bs-toggle="offcanvas"*/}
+                {/*                   href="#sidebarOffcanvasSearch" aria-controls="sidebarOffcanvasSearch">*/}
+                {/*<span className="icon">*/}
+                {/*  <i className="fe fe-search"></i>*/}
+                {/*</span>*/}
+                {/*                </a>*/}
 
-                                <a className="navbar-user-link" data-bs-toggle="offcanvas"
-                                   href="#sidebarOffcanvasSearch" aria-controls="sidebarOffcanvasSearch">
-                <span className="icon">
-                  <i className="fe fe-search"></i>
-                </span>
-                                </a>
-
-                            </div>
+                {/*            </div>*/}
 
                     </div>
 
