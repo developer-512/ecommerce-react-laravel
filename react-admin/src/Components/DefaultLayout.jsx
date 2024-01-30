@@ -6,9 +6,10 @@ import avatar from '../assets/img/avatars/profiles/avatar-1.jpg';
 
 function DefaultLayout(props) {
     const {user,token,setUser,setToken}=useStateContext();
-    // if (!token){
-    //     return <Navigate to={props.routes.login}/>
-    // }
+    console.log(token);
+    if (!token){
+        return <Navigate to={props.routes.login}/>
+    }
     return (
         <>
             <nav className="navbar navbar-vertical fixed-start navbar-expand-md navbar-light" id="sidebar">

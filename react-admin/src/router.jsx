@@ -52,7 +52,7 @@ const router=createBrowserRouter([
     },
     {
         path:routes.dashboard,
-        element:<GuestLayout/>,
+        element:<GuestLayout routes={routes}/>,
         children:[
             {
                 path: routes.login,
