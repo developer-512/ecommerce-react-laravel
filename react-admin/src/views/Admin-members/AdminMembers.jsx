@@ -1,8 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
+import axiosClient from "../../axios-client.js";
 
 const AdminMembers = (prop) => {
-
+    const [users,setUsers]=useState(false);
+    useEffect(() => {
+        getUsers();
+    }, []);
+    function getUsers ()  {
+        axiosClient.get('/admin/users')
+            .then(({data})=>{
+                setUsers(data.data);
+                console.log(users);
+            })
+            .catch((err)=>{
+                const response = err.response;
+                alert('Status: '+response.status)
+            })
+    }
     return (
         <div className="container-fluid">
             <div className="row justify-content-center">
@@ -42,29 +57,29 @@ const AdminMembers = (prop) => {
 
                                 </div>
                             </div>
-                            <div className="row align-items-center">
-                                <div className="col">
+                            {/*<div className="row align-items-center">*/}
+                            {/*    <div className="col">*/}
 
-                                    <ul className="nav nav-tabs nav-overflow header-tabs">
-                                        <li className="nav-item">
-                                            <a href="#!" className="nav-link text-nowrap active">
-                                                All contacts <span className="badge rounded-pill bg-secondary-soft">823</span>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a href="#!" className="nav-link text-nowrap">
-                                                Your contacts <span className="badge rounded-pill bg-secondary-soft">231</span>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a href="#!" className="nav-link text-nowrap">
-                                                Deleted <span className="badge rounded-pill bg-secondary-soft">22</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                            {/*        <ul className="nav nav-tabs nav-overflow header-tabs">*/}
+                            {/*            <li className="nav-item">*/}
+                            {/*                <a href="#" className="nav-link text-nowrap active">*/}
+                            {/*                    All contacts <span className="badge rounded-pill bg-secondary-soft">823</span>*/}
+                            {/*                </a>*/}
+                            {/*            </li>*/}
+                            {/*            <li className="nav-item">*/}
+                            {/*                <a href="#" className="nav-link text-nowrap">*/}
+                            {/*                    Your contacts <span className="badge rounded-pill bg-secondary-soft">231</span>*/}
+                            {/*                </a>*/}
+                            {/*            </li>*/}
+                            {/*            <li className="nav-item">*/}
+                            {/*                <a href="#" className="nav-link text-nowrap">*/}
+                            {/*                    Deleted <span className="badge rounded-pill bg-secondary-soft">22</span>*/}
+                            {/*                </a>*/}
+                            {/*            </li>*/}
+                            {/*        </ul>*/}
 
-                                </div>
-                            </div>
+                            {/*    </div>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
 
@@ -93,7 +108,7 @@ const AdminMembers = (prop) => {
 
 
                                             <form>
-                                                <div className="choices" data-type="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm form-control-flush"><select className="form-select form-select-sm form-control-flush form-control" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="10 per page">10 per page</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="10 per page" data-custom-properties="null" aria-selected="true">10 per page</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="5 per page" role="option" aria-selected="true">
+                                                <div className="choices" datatype="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm form-control-flush"><select className="form-select form-select-sm form-control-flush form-control" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="10 per page">10 per page</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="10 per page" data-custom-properties="null" aria-selected="true">10 per page</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="5 per page" role="option" aria-selected="true">
                                                     5 per page
                                                 </div><div className="choices__item dropdown-item choices__item--selectable" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="2" data-value="10 per page" role="option">
                                                     10 per page
@@ -143,7 +158,7 @@ const AdminMembers = (prop) => {
                                                                     <div className="col-auto">
 
 
-                                                                        <div className="choices" data-type="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm"><select className="form-select form-select-sm form-control" name="item-title" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="*">Any</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="*" data-custom-properties="null" aria-selected="true">Any</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="*" role="option" aria-selected="true">
+                                                                        <div className="choices" datatype="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm"><select className="form-select form-select-sm form-control" name="item-title" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="*">Any</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="*" data-custom-properties="null" aria-selected="true">Any</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="*" role="option" aria-selected="true">
                                                                             Any
                                                                         </div><div className="choices__item dropdown-item choices__item--selectable" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="2" data-value="Designer" role="option">
                                                                             Designer
@@ -169,7 +184,7 @@ const AdminMembers = (prop) => {
                                                                     <div className="col-auto">
 
 
-                                                                        <div className="choices" data-type="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm"><select className="form-select form-select-sm form-control" name="item-score" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="*">Any</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="*" data-custom-properties="null" aria-selected="true">Any</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="*" role="option" aria-selected="true">
+                                                                        <div className="choices" datatype="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm"><select className="form-select form-select-sm form-control" name="item-score" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="*">Any</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="*" data-custom-properties="null" aria-selected="true">Any</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="*" role="option" aria-selected="true">
                                                                             Any
                                                                         </div><div className="choices__item dropdown-item choices__item--selectable" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="2" data-value="1/10" role="option">
                                                                             1+
@@ -255,16 +270,10 @@ const AdminMembers = (prop) => {
 
                                             </td>
                                             <td>
-
-
-                                                <div className="avatar avatar-xs align-middle me-2">
-                                                    <img className="avatar-img rounded-circle" src="assets/img/avatars/profiles/avatar-1.jpg" alt="..."/>
-                                                </div> <a className="item-name text-reset" href="profile-posts.html">Dianna Smiley</a>
+                                                <span className="item-name text-reset" >Dianna Smiley</span>
 
                                             </td>
                                             <td>
-
-
                                                 <span className="item-title">Designer</span>
 
                                             </td>
@@ -287,7 +296,7 @@ const AdminMembers = (prop) => {
                                             <td>
 
 
-                                                <a className="item-company text-reset" href="team-overview.html">Twitter</a>
+                                                <a className="item-company text-reset" href="">Twitter</a>
 
                                             </td>
                                             <td className="text-end">
@@ -298,13 +307,13 @@ const AdminMembers = (prop) => {
                                                         <i className="fe fe-more-vertical"></i>
                                                     </a>
                                                     <div className="dropdown-menu dropdown-menu-end">
-                                                        <a href="#!" className="dropdown-item">
+                                                        <a href="#" className="dropdown-item">
                                                             Action
                                                         </a>
-                                                        <a href="#!" className="dropdown-item">
+                                                        <a href="#" className="dropdown-item">
                                                             Another action
                                                         </a>
-                                                        <a href="#!" className="dropdown-item">
+                                                        <a href="#" className="dropdown-item">
                                                             Something else here
                                                         </a>
                                                     </div>
@@ -395,7 +404,7 @@ const AdminMembers = (prop) => {
                                     <div className="col-auto me-n3">
 
                                         <form>
-                                            <div className="choices" data-type="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm form-control-flush"><select className="form-select form-select-sm form-control-flush form-control" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="9 per page">9 per page</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="9 per page" data-custom-properties="null" aria-selected="true">9 per page</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="9 per page" role="option" aria-selected="true">
+                                            <div className="choices" datatype="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm form-control-flush"><select className="form-select form-select-sm form-control-flush form-control" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="9 per page">9 per page</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="9 per page" data-custom-properties="null" aria-selected="true">9 per page</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="9 per page" role="option" aria-selected="true">
                                                 9 per page
                                             </div><div className="choices__item dropdown-item choices__item--selectable" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="2" data-value="All" role="option">
                                                 All
@@ -443,7 +452,7 @@ const AdminMembers = (prop) => {
                                                                 <div className="col-auto">
 
 
-                                                                    <div className="choices" data-type="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm"><select className="form-select form-select-sm form-control" name="item-title" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="*">Any</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="*" data-custom-properties="null" aria-selected="true">Any</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="*" role="option" aria-selected="true">
+                                                                    <div className="choices" datatype="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm"><select className="form-select form-select-sm form-control" name="item-title" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="*">Any</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="*" data-custom-properties="null" aria-selected="true">Any</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="*" role="option" aria-selected="true">
                                                                         Any
                                                                     </div><div className="choices__item dropdown-item choices__item--selectable" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="2" data-value="Designer" role="option">
                                                                         Designer
@@ -469,7 +478,7 @@ const AdminMembers = (prop) => {
                                                                 <div className="col-auto">
 
 
-                                                                    <div className="choices" data-type="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm"><select className="form-select form-select-sm form-control" name="item-score" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="*">Any</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="*" data-custom-properties="null" aria-selected="true">Any</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="*" role="option" aria-selected="true">
+                                                                    <div className="choices" datatype="select-one" tabIndex="0" role="listbox" aria-haspopup="true" aria-expanded="false"><div className="form-select form-select-sm"><select className="form-select form-select-sm form-control" name="item-score" data-choices="{&quot;searchEnabled&quot;: false}" hidden="" tabIndex="-1" data-choice="active"><option value="*">Any</option></select><div className="choices__list choices__list--single"><div className="choices__item choices__item--selectable" data-item="" data-id="1" data-value="*" data-custom-properties="null" aria-selected="true">Any</div></div></div><div className="choices__list dropdown-menu" aria-expanded="false"><div className="choices__list" role="listbox"><div className="choices__item dropdown-item choices__item--selectable is-highlighted" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="1" data-value="*" role="option" aria-selected="true">
                                                                         Any
                                                                     </div><div className="choices__item dropdown-item choices__item--selectable" data-select-text="Press to select" data-choice="" data-choice-selectable="" data-id="2" data-value="1/10" role="option">
                                                                         1+
@@ -538,13 +547,13 @@ const AdminMembers = (prop) => {
                                                             <i className="fe fe-more-vertical"></i>
                                                         </a>
                                                         <div className="dropdown-menu dropdown-menu-end">
-                                                            <a href="#!" className="dropdown-item">
+                                                            <a href="#" className="dropdown-item">
                                                                 Action
                                                             </a>
-                                                            <a href="#!" className="dropdown-item">
+                                                            <a href="#" className="dropdown-item">
                                                                 Another action
                                                             </a>
-                                                            <a href="#!" className="dropdown-item">
+                                                            <a href="#" className="dropdown-item">
                                                                 Something else here
                                                             </a>
                                                         </div>
@@ -554,8 +563,8 @@ const AdminMembers = (prop) => {
                                             </div>
 
 
-                                            <a href="profile-posts.html" className="avatar avatar-xl card-avatar">
-                                                <img src="assets/img/avatars/profiles/avatar-1.jpg" className="avatar-img rounded-circle" alt="..."/>
+                                            <a href="" className="avatar avatar-xl card-avatar">
+                                                {/*<img src="assets/img/avatars/profiles/avatar-1.jpg" className="avatar-img rounded-circle" alt="..."/>*/}
                                             </a>
 
 
@@ -563,7 +572,7 @@ const AdminMembers = (prop) => {
 
 
                                                 <h2 className="card-title">
-                                                    <a className="item-name" href="profile-posts.html">Dianna Smiley</a>
+                                                    <a className="item-name" href="">Dianna Smiley</a>
                                                 </h2>
 
 
@@ -663,7 +672,7 @@ const AdminMembers = (prop) => {
 
                                             <div className="form-check">
                                                 <input className="form-check-input" id="cardAlertCheckbox" type="checkbox" checked="" disabled=""/>
-                                                <label className="form-check-label text-white" for="cardAlertCheckbox">
+                                                <label className="form-check-label text-white" htmlFor="cardAlertCheckbox">
                                                     <span className="list-alert-count">0</span> deal(s)
                                                 </label>
                                             </div>

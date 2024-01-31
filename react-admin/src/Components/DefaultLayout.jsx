@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../Context/ContextProvider.jsx";
 import logo from '../assets/img/logo.svg';
@@ -7,21 +7,29 @@ import axiosClient from "../axios-client.js";
 
 function DefaultLayout(props) {
     const {user,token,setUser,setToken}=useStateContext();
-    console.log(token);
     if (!token){
         return <Navigate to={props.routes.login}/>
     }
+    let url='';
+    // Getting URL
+    useEffect(() => {
+        url=window.location.pathname;
+        console.log(url);
+    }, []);
+
     function LogoutAdmin(ev) {
         ev.preventDefault();
-        axiosClient.post('/admin/logout')
-            .then(()=>{
-                setUser({})
-                setToken(null)
-            })
-            .catch((err)=>{
-                const response = err.response;
-                alert(response.status)
-            })
+        if (confirm('Are you really want to logout?')) {
+            axiosClient.post('/admin/logout')
+                .then(() => {
+                    setUser({})
+                    setToken(null)
+                })
+                .catch((err) => {
+                    const response = err.response;
+                    alert(response.status)
+                })
+        }
     }
     return (
         <>
@@ -73,7 +81,7 @@ function DefaultLayout(props) {
                         <ul className="navbar-nav">
 
                             <li className="nav-item">
-                                <Link className="nav-link " to={props.routes.dashboard}>
+                                <Link to={props.routes.dashboard} className={(url==props.routes.dashboard)?'nav-link active':'nav-link'} >
                                     <i className="fe fe-home"></i> Dashboard
                                 </Link>
                             </li>
@@ -85,12 +93,12 @@ function DefaultLayout(props) {
                                 <div className="collapse " id="sidebarComponents" >
                                     <ul className="nav nav-sm flex-column">
                                         <li>
-                                            <Link to={props.routes.products} className="nav-link">
+                                            <Link to={props.routes.products} className={(url==props.routes.products)?'nav-link active':'nav-link'}>
                                                 Products
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to={props.routes.categories} className="nav-link">
+                                            <Link to={props.routes.categories} className={(url==props.routes.categories)?'nav-link active':'nav-link'}>
                                                 Categories
                                             </Link>
                                         </li>
@@ -100,7 +108,7 @@ function DefaultLayout(props) {
                             </li>
 
                             <li className="nav-item">
-                                <Link to={props.routes.adminmembers} className="nav-link ">
+                                <Link to={props.routes.adminmembers} className={(url==props.routes.adminmembers)?'nav-link active':'nav-link'}>
                                     <i className='fe fe-users'></i>Admin Members
                                 </Link>
                             </li>
