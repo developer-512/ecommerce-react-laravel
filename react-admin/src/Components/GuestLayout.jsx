@@ -6,9 +6,9 @@ function GuestLayout(props) {
     const {user,token,setUser,setToken}=useStateContext();
 
     useEffect(()=>{
-        let BodyClasses=document.getElementById('root');
-        BodyClasses.classList.add('d-flex', 'align-items-center','bg-auth','border-top','border-top-2','border-primary')
-    })
+        let BodyClasses = document.body;
+        BodyClasses.classList.add('d-flex', 'align-items-center', 'bg-auth', 'border-top', 'border-top-2', 'border-primary')
+    },[])
     if (token){
         return <Navigate to={props.routes.dashboard}/>
     }

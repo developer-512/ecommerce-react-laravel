@@ -10,6 +10,10 @@ function DefaultLayout(props) {
     if (!token){
         return <Navigate to={props.routes.login}/>
     }
+    useEffect(() => {
+        let bodyElement = document.body;
+        bodyElement.classList.remove('d-flex', 'align-items-center', 'bg-auth', 'border-top', 'border-top-2', 'border-primary');
+    }, []);
     let url='';
     // Getting URL
     useEffect(() => {
@@ -33,6 +37,7 @@ function DefaultLayout(props) {
     }
     return (
         <>
+
             <nav className="navbar navbar-vertical fixed-start navbar-expand-md navbar-light" id="sidebar">
                 <div className="container-fluid">
 
@@ -158,6 +163,7 @@ function DefaultLayout(props) {
                     </div>
 
                 </div>
+
             </nav>
 
             <div className="main-content">

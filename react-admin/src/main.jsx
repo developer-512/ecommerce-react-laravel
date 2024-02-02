@@ -8,8 +8,7 @@ import './assets/css/libs.bundle.css';
 import './assets/css/theme.bundle.css';
 import './assets/js/theme.bundle.js';
 import './assets/js/vendor.bundle.js';
-// import './assets/js/theme.bundle.js.map';
-// import './assets/js/vendor.bundle.js.map'
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
