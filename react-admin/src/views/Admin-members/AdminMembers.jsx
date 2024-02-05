@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import axiosClient from "../../axios-client.js";
-import 'list.js'
+import 'datatables.net-dt/css/jquery.dataTables.min.css';
+import 'datatables.net/js/jquery.dataTables.min.js';
+import routeAPI from "../../routeAPI.js";
 const AdminMembers = (prop) => {
     const [users,setUsers]=useState(false);
     useEffect(() => {
         getUsers();
     }, []);
+
     function getUsers ()  {
-        axiosClient.get('/admin/users')
+        axiosClient.get(routeAPI.users)
             .then(({data})=>{
                 setUsers(data.data);
                 console.log(users)
@@ -47,35 +50,13 @@ const AdminMembers = (prop) => {
 
                                 </div>
                             </div>
-                            {/*<div className="row align-items-center">*/}
-                            {/*    <div className="col">*/}
 
-                            {/*        <ul className="nav nav-tabs nav-overflow header-tabs">*/}
-                            {/*            <li className="nav-item">*/}
-                            {/*                <a href="#" className="nav-link text-nowrap active">*/}
-                            {/*                    All contacts <span className="badge rounded-pill bg-secondary-soft">823</span>*/}
-                            {/*                </a>*/}
-                            {/*            </li>*/}
-                            {/*            <li className="nav-item">*/}
-                            {/*                <a href="#" className="nav-link text-nowrap">*/}
-                            {/*                    Your contacts <span className="badge rounded-pill bg-secondary-soft">231</span>*/}
-                            {/*                </a>*/}
-                            {/*            </li>*/}
-                            {/*            <li className="nav-item">*/}
-                            {/*                <a href="#" className="nav-link text-nowrap">*/}
-                            {/*                    Deleted <span className="badge rounded-pill bg-secondary-soft">22</span>*/}
-                            {/*                </a>*/}
-                            {/*            </li>*/}
-                            {/*        </ul>*/}
-
-                            {/*    </div>*/}
-                            {/*</div>*/}
                         </div>
                     </div>
 
 
 
-                    <div className="table-responsive" data-list='{"valueNames": ["tables-row", "tables-first", "tables-last", "tables-handle"]}'>
+                    <div className="table-responsive" id='myTable'>
                         <table className="table table-sm">
                             <thead>
                             <tr>

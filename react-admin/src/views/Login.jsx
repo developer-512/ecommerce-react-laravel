@@ -2,6 +2,8 @@ import React, {createRef} from 'react';
 import happinessimg from '../assets/img/illustrations/happiness.svg';
 import axiosClient from "../axios-client.js";
 import {useStateContext} from "../Context/ContextProvider.jsx";
+import routeAPI from "../routeAPI.js";
+
 const Login = () => {
     const {setUser,setToken}=useStateContext();
     const emailRef=createRef();
@@ -12,7 +14,7 @@ const Login = () => {
             email:emailRef.current.value,
             password:passwordRef.current.value,
         }
-        axiosClient.post('/admin/login',payload)
+        axiosClient.post(routeAPI.login,payload)
             .then(({data})=>{
                 setUser(data.user)
                 setToken(data.token)

@@ -4,7 +4,7 @@ import {useStateContext} from "../Context/ContextProvider.jsx";
 import logo from '../assets/img/logo.svg';
 import avatar from '../assets/img/avatars/profiles/avatar-1.jpg';
 import axiosClient from "../axios-client.js";
-
+import routeAPI from "../routeAPI.js";
 function DefaultLayout(props) {
     const {user,token,setUser,setToken}=useStateContext();
     if (!token){
@@ -24,7 +24,7 @@ function DefaultLayout(props) {
     function LogoutAdmin(ev) {
         ev.preventDefault();
         if (confirm('Are you really want to logout?')) {
-            axiosClient.post('/admin/logout')
+            axiosClient.post(routeAPI.logout)
                 .then(() => {
                     setUser({})
                     setToken(null)
