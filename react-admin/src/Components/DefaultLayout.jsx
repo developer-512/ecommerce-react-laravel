@@ -4,11 +4,12 @@ import {useStateContext} from "../Context/ContextProvider.jsx";
 import logo from '../assets/img/logo.svg';
 import avatar from '../assets/img/avatars/profiles/avatar-1.jpg';
 import axiosClient from "../axios-client.js";
-import routeAPI from "../routeAPI.js";
-function DefaultLayout(props) {
+import routeAPI from "../config/routeAPI.js";
+import routes from "../config/route.js";
+function DefaultLayout() {
     const {user,token,setUser,setToken}=useStateContext();
     if (!token){
-        return <Navigate to={props.routes.login}/>
+        return <Navigate to={routes.login}/>
     }
     useEffect(() => {
         let bodyElement = document.body;
@@ -45,7 +46,7 @@ function DefaultLayout(props) {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <Link className="navbar-brand" href="" to={props.routes.dashboard}>
+                    <Link className="navbar-brand" href="" to={routes.dashboard}>
                         <img src={logo} className="navbar-brand-img mx-auto" alt="..."/>
                     </Link>
 
@@ -86,7 +87,7 @@ function DefaultLayout(props) {
                         <ul className="navbar-nav">
 
                             <li className="nav-item">
-                                <Link to={props.routes.dashboard} className={(url==props.routes.dashboard)?'nav-link active':'nav-link'} >
+                                <Link to={routes.dashboard} className={(url===routes.dashboard)?'nav-link active':'nav-link'} >
                                     <i className="fe fe-home"></i> Dashboard
                                 </Link>
                             </li>
@@ -98,12 +99,12 @@ function DefaultLayout(props) {
                                 <div className="collapse " id="sidebarComponents" >
                                     <ul className="nav nav-sm flex-column">
                                         <li>
-                                            <Link to={props.routes.products} className={(url==props.routes.products)?'nav-link active':'nav-link'}>
+                                            <Link to={routes.products} className={(url===routes.products)?'nav-link active':'nav-link'}>
                                                 Products
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to={props.routes.categories} className={(url==props.routes.categories)?'nav-link active':'nav-link'}>
+                                            <Link to={routes.categories} className={(url===routes.categories)?'nav-link active':'nav-link'}>
                                                 Categories
                                             </Link>
                                         </li>
@@ -113,7 +114,7 @@ function DefaultLayout(props) {
                             </li>
 
                             <li className="nav-item">
-                                <Link to={props.routes.adminmembers} className={(url==props.routes.adminmembers)?'nav-link active':'nav-link'}>
+                                <Link to={routes.users} className={(url===routes.users)?'nav-link active':'nav-link'}>
                                     <i className='fe fe-users'></i>Admin Members
                                 </Link>
                             </li>

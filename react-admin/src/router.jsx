@@ -5,27 +5,16 @@ import GuestLayout from "./Components/GuestLayout.jsx";
 import Login from "./views/Login.jsx";
 import Products from "./views/Products.jsx";
 import Categories from "./views/Categories.jsx";
-import AdminMembers from "./views/Admin-members/AdminMembers.jsx";
-import ActionAdmin from "./views/Admin-members/ActionAdmin.jsx";
+import Users from "./views/Admin/Users.jsx";
+import ActionUsers from "./views/Admin/ActionUsers.jsx";
 
-// Main url to access an admin
-let admin='/admin';
-
-// routes paths are stored in object
-let routes={
-    dashboard:admin,
-    login:admin+'/login',
-    products:admin+'/products',
-    categories:admin+'/categories',
-    adminmembers:admin+'/adminmembers',
-    actionadmin:admin+'/actionadmin'
-}
+import routes from "./config/route.js";
 
 // routes
 const router=createBrowserRouter([
     {
         path:routes.dashboard,
-        element:<DefaultLayout routes={routes}/>,
+        element:<DefaultLayout/>,
         children:[
             {
                 path:routes.dashboard,
@@ -40,19 +29,19 @@ const router=createBrowserRouter([
                 element: <Categories/>
             },
             {
-                path: routes.adminmembers,
-                element: <AdminMembers routes={routes.actionadmin}/>
+                path: routes.users,
+                element: <Users />
             },
             {
-                path: routes.actionadmin,
-                element: <ActionAdmin/>
+                path: routes.actionusers,
+                element: <ActionUsers/>
             }
 
         ]
     },
     {
         path:routes.dashboard,
-        element:<GuestLayout routes={routes}/>,
+        element:<GuestLayout />,
         children:[
             {
                 path: routes.login,

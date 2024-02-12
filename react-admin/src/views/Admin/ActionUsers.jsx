@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ActionAdmin = () => {
+const ActionUsers = () => {
     return (
         <div>
             action
@@ -8,4 +8,4 @@ const ActionAdmin = () => {
     );
 };
 
-export default ActionAdmin;
+export default ActionUsers;

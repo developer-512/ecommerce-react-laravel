@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import {Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../Context/ContextProvider.jsx";
+import routes from "../config/route.js";
 
-function GuestLayout(props) {
+function GuestLayout() {
     const {user,token,setUser,setToken}=useStateContext();
 
     useEffect(()=>{
@@ -10,7 +11,7 @@ function GuestLayout(props) {
         BodyClasses.classList.add('d-flex', 'align-items-center', 'bg-auth', 'border-top', 'border-top-2', 'border-primary')
     },[])
     if (token){
-        return <Navigate to={props.routes.dashboard}/>
+        return <Navigate to={routes.dashboard}/>
     }
     return (
            <Outlet/>

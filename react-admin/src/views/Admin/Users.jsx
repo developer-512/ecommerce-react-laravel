@@ -3,8 +3,9 @@ import {Link} from "react-router-dom";
 import axiosClient from "../../axios-client.js";
 import 'datatables.net-dt/css/jquery.dataTables.min.css';
 import 'datatables.net/js/jquery.dataTables.min.js';
-import routeAPI from "../../routeAPI.js";
-const AdminMembers = (prop) => {
+import routeAPI from "../../config/routeAPI.js";
+import routes from "../../config/route.js";
+const Users = () => {
     const [users,setUsers]=useState(false);
     useEffect(() => {
         getUsers();
@@ -44,7 +45,7 @@ const AdminMembers = (prop) => {
 
                                 </div>
                                 <div className="col-auto">
-                                    <Link to={prop.routes} className="btn btn-primary ms-2">
+                                    <Link to={routes.actionusers} className="btn btn-primary ms-2">
                                         Add Admin
                                     </Link>
 
@@ -104,4 +105,4 @@ const AdminMembers = (prop) => {
     )
 }
 
-export default AdminMembers;
+export default Users;
