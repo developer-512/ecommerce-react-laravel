@@ -8,7 +8,7 @@ import Categories from "./views/Categories.jsx";
 import Users from "./views/Admin/Users.jsx";
 import ActionUsers from "./views/Admin/ActionUsers.jsx";
 
-import routes from "./config/route.js";
+import routes from "./Config/route.js";
 
 // routes
 const router=createBrowserRouter([

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import axiosClient from "../../axios-client.js";
-import 'datatables.net-dt/css/jquery.dataTables.min.css';
-import 'datatables.net/js/jquery.dataTables.min.js';
-import routeAPI from "../../config/routeAPI.js";
-import routes from "../../config/route.js";
+import routeAPI from "../../Config/routeAPI.js";
+import routes from "../../Config/route.js";
+import DataTable from 'react-data-table-component';
+
 const Users = () => {
     const [users,setUsers]=useState(false);
     useEffect(() => {
@@ -54,8 +54,6 @@ const Users = () => {
 
                         </div>
                     </div>
-
-
 
                     <div className="table-responsive" id='myTable'>
                         <table className="table table-sm">

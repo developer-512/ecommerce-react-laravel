@@ -4,8 +4,8 @@ import {useStateContext} from "../Context/ContextProvider.jsx";
 import logo from '../assets/img/logo.svg';
 import avatar from '../assets/img/avatars/profiles/avatar-1.jpg';
 import axiosClient from "../axios-client.js";
-import routeAPI from "../config/routeAPI.js";
-import routes from "../config/route.js";
+import routeAPI from "../Config/routeAPI.js";
+import routes from "../Config/route.js";
 function DefaultLayout() {
     const {user,token,setUser,setToken}=useStateContext();
     if (!token){

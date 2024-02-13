@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../Context/ContextProvider.jsx";
-import routes from "../config/route.js";
+import routes from "../Config/route.js";
 
 function GuestLayout() {
     const {user,token,setUser,setToken}=useStateContext();
