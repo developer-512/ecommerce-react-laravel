@@ -66,7 +66,7 @@ const Users = () => {
 
                                 </div>
                                 <div className="col-auto">
-                                    <Link to={routes.users+routes.action} className="btn btn-primary ms-2">
+                                    <Link to={routes.users+commonRoute.action} className="btn btn-primary ms-2">
                                         Add Admin
                                     </Link>
 

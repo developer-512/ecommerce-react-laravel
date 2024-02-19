@@ -10,7 +10,7 @@ import ActionUsers from "./views/Admin/ActionUsers.jsx";
 
 import routes from "./Config/route.js";
 
-// routes
+// Routes
 const router=createBrowserRouter([
     {
         path:routes.dashboard,
@@ -33,7 +33,7 @@ const router=createBrowserRouter([
                 element: <Users />
             },
             {
-                path: routes.users+routes.action,
+                path: routes.users+commonRoute.action,
                 element: <ActionUsers/>
             }
 

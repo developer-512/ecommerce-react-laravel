@@ -1,0 +1,6 @@
+//
+
+
+let commonRoute={
+    action:'/action'
+}

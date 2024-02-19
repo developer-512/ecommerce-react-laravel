@@ -1,16 +1,15 @@
 
 // Main url to access an admin
 
-let admin='/admin';
+const admin='/admin';
 
-// routes paths are stored in object
-let routes={
+// Routes paths are defined here
+const routes={
     dashboard:admin,
     login:admin+'/login',
     products:admin+'/products',
     categories:admin+'/categories',
     users:admin+'/users',
-    action:'/action',
 }
 
 
