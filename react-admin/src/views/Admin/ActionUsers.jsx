@@ -3,7 +3,7 @@ import React from 'react';
 const ActionUsers = () => {
     return (
         <div>
-            action
+            Action
         </div>
     );
 };

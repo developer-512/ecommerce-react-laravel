@@ -129,7 +129,6 @@
     <orderEntry type="library" name="list.js" level="application" />
     <orderEntry type="library" name="mapbox-gl" level="application" />
     <orderEntry type="library" name="mapbox-gl" level="application" />
-    <orderEntry type="library" name="jquery.dataTables" level="application" />
     <orderEntry type="library" name="mapbox-gl" level="application" />
   </component>
 </module>

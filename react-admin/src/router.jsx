@@ -33,7 +33,7 @@ const router=createBrowserRouter([
                 element: <Users />
             },
             {
-                path: routes.actionusers,
+                path: routes.users+routes.action,
                 element: <ActionUsers/>
             }
 

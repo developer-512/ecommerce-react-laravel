@@ -1,5 +1,6 @@
 
 // Main url to access an admin
+
 let admin='/admin';
 
 // routes paths are stored in object
@@ -9,6 +10,8 @@ let routes={
     products:admin+'/products',
     categories:admin+'/categories',
     users:admin+'/users',
-    actionusers:admin+'/actionusers'
+    action:'/action',
 }
+
+
 export default routes;

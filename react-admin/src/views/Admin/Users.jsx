@@ -6,7 +6,7 @@ import routes from "../../Config/route.js";
 import DataTable from 'react-data-table-component';
 
 const Users = () => {
-    const [users,setUsers]=useState([{}]);
+    const [users,setUsers]=useState([]);
     useEffect(() => {
         getUsers();
     }, []);
@@ -25,21 +25,25 @@ const Users = () => {
 
     const columns=[
         {
-            name:'id'
+            name:'Id',
+            selector:'id'
         },
         {
-            name:'Name'
+            name:'Name',
+            selector:'name'
         },
         {
-            name: 'Email'
+            name: 'Email',
+            selector:'email'
         },
         {
-            name: 'Registered Date'
+            name: 'Registered Date',
+            selector:'created_at'
         }
     ];
-    const userData=[
-        {}
-    ]
+    // const userData=[
+    //     {}
+    // ]
     return (
         <div className="container-fluid">
             <div className="row justify-content-center">
@@ -62,7 +66,7 @@ const Users = () => {
 
                                 </div>
                                 <div className="col-auto">
-                                    <Link to={routes.actionusers} className="btn btn-primary ms-2">
+                                    <Link to={routes.users+routes.action} className="btn btn-primary ms-2">
                                         Add Admin
                                     </Link>
 
@@ -74,7 +78,7 @@ const Users = () => {
 
                     <div className="table-responsive" id='myTable'>
                         {
-                            <DataTable columns={columns} data={users} pagination={true}/>
+                            <DataTable columns={columns} data={users} pagination={true} />
                         }
                     </div>
                 </div>
