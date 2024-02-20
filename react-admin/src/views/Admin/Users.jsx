@@ -4,6 +4,7 @@ import axiosClient from "../../axios-client.js";
 import routeAPI from "../../Config/routeAPI.js";
 import routes from "../../Config/route.js";
 import DataTable from 'react-data-table-component';
+import commonRoute from "../../Config/commonRoute.js";
 
 const Users = () => {
     const [users,setUsers]=useState([]);
@@ -26,29 +27,29 @@ const Users = () => {
     const columns=[
         {
             name:'Id',
-            selector:'id'
+            selector:row=>row.id,
+            sortable: true,
         },
         {
             name:'Name',
-            selector:'name'
+            selector:row => row.name
         },
         {
             name: 'Email',
-            selector:'email'
+            selector:row=>row.email
         },
         {
             name: 'Registered Date',
-            selector:'created_at'
-        }
+            selector:row=>row.created_at,
+            sortable: true,
+        },
+
     ];
-    // const userData=[
-    //     {}
-    // ]
+    const ExpandedComponent = ({ data }) => <pre>{data.name}</pre>;
     return (
         <div className="container-fluid">
             <div className="row justify-content-center">
                 <div className="col-12">
-
 
                     <div className="header">
                         <div className="header-body">
@@ -77,9 +78,8 @@ const Users = () => {
                     </div>
 
                     <div className="table-responsive" id='myTable'>
-                        {
-                            <DataTable columns={columns} data={users} pagination={true} />
-                        }
+                        <DataTable columns={columns} data={users} pagination={true} selectableRows={true} expandableRows={true} expandableRowsComponent={ExpandedComponent} fixedHeader={true}/>
+
                     </div>
                 </div>
             </div>

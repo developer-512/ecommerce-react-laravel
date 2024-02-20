@@ -9,6 +9,7 @@ import Users from "./views/Admin/Users.jsx";
 import ActionUsers from "./views/Admin/ActionUsers.jsx";
 
 import routes from "./Config/route.js";
+import commonRoute from "./Config/commonRoute.js";
 
 // Routes
 const router=createBrowserRouter([
