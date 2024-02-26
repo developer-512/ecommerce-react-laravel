@@ -2,6 +2,6 @@
 
 
 let commonRoute={
-    action:'/action'
+    action:'/action/'
 }
 export default commonRoute;

@@ -11,12 +11,13 @@ const Users = () => {
     useEffect(() => {
         getUsers();
     }, []);
+
+
     function getUsers ()  {
         axiosClient.get(routeAPI.users)
             .then(({data})=>{
                 setUsers(data.data);
-                console.log(users)
-                // console.log(users);
+                console.log(users);
             })
             .catch((err)=>{
                 const response = err.response;
@@ -24,25 +25,35 @@ const Users = () => {
             })
     }
 
+    let deleteUser='<button>Edit</button>';
     const columns=[
         {
             name:'Id',
-            selector:row=>row.id,
+            selector:user=>user.id,
             sortable: true,
         },
         {
             name:'Name',
-            selector:row => row.name
+            selector:user => user.name
         },
         {
             name: 'Email',
-            selector:row=>row.email
+            selector:user=>user.email
         },
         {
             name: 'Registered Date',
-            selector:row=>row.created_at,
+            selector:user=>user.created_at,
             sortable: true,
         },
+        {
+            name: 'Action',
+            selector:user=>(<div className='d-flex'>
+                <Link to={routes.users+commonRoute.action+user.id} className='btn btn-primary' >Edit</Link>
+                {'\u00A0'}
+                {'\u00A0'}
+                <button className='btn btn-danger'>Delete</button>
+            </div>)
+        }
 
     ];
     const ExpandedComponent = ({ data }) => <pre>{data.name}</pre>;
@@ -88,43 +99,4 @@ const Users = () => {
 }
 
 export default Users;
-{/*<table className="table table-sm">*/}
-{/*    <thead>*/}
-{/*    <tr>*/}
-{/*        <th scope="col">*/}
-{/*            <a href="#" className="text-muted list-sort" data-sort="tables-row">#</a>*/}
-{/*        </th>*/}
-{/*        <th scope="col">*/}
-{/*            <a href="#" className="text-muted list-sort" data-sort="tables-first">First</a>*/}
-{/*        </th>*/}
-{/*        <th scope="col">*/}
-{/*            <a href="#" className="text-muted list-sort" data-sort="tables-last">Last</a>*/}
-{/*        </th>*/}
-{/*        <th scope="col">*/}
-{/*            <a href="#" className="text-muted list-sort" data-sort="tables-handle">Handle</a>*/}
-{/*        </th>*/}
-{/*    </tr>*/}
-{/*    </thead>*/}
-{/*    <tbody className="list">*/}
 
-{/*    <tr>*/}
-{/*        <th scope="row" className="tables-row">1</th>*/}
-{/*        <td className="tables-first">Mark</td>*/}
-{/*        <td className="tables-last">Otto</td>*/}
-{/*        <td className="tables-handle">@mdo</td>*/}
-{/*    </tr>*/}
-{/*    <tr>*/}
-{/*        <th scope="row" className="tables-row">2</th>*/}
-{/*        <td className="tables-first">Jacob</td>*/}
-{/*        <td className="tables-last">Thornton</td>*/}
-{/*        <td className="tables-handle">@fat</td>*/}
-{/*    </tr>*/}
-{/*    <tr>*/}
-{/*        <th scope="row" className="tables-row">3</th>*/}
-{/*        <td className="tables-first">Larry</td>*/}
-{/*        <td className="tables-last">the Bird</td>*/}
-{/*        <td className="tables-handle">@twitter</td>*/}
-{/*    </tr>*/}
-
-{/*    </tbody>*/}
-{/*</table>*/}
