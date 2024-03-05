@@ -10,6 +10,7 @@ import ActionUsers from "./views/Admin/ActionUsers.jsx";
 
 import routes from "./Config/route.js";
 import commonRoute from "./Config/commonRoute.js";
+import routeKeys from "./Config/routeKeys.js";
 
 // Routes
 const router=createBrowserRouter([
@@ -34,8 +35,12 @@ const router=createBrowserRouter([
                 element: <Users />
             },
             {
-                path: routes.users+commonRoute.action,
-                element: <ActionUsers/>
+                path: routes.users+commonRoute.newRecord,
+                element: <ActionUsers key={routeKeys.createUser}/>
+            },
+            {
+                path: routes.users+commonRoute.recordId,
+                element: <ActionUsers key={routeKeys.updateUser}/>
             }
 
         ]

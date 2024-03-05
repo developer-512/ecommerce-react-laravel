@@ -25,7 +25,7 @@ const Users = () => {
             })
     }
 
-    let deleteUser='<button>Edit</button>';
+
     const columns=[
         {
             name:'Id',
@@ -48,7 +48,7 @@ const Users = () => {
         {
             name: 'Action',
             selector:user=>(<div className='d-flex'>
-                <Link to={routes.users+commonRoute.action+user.id} className='btn btn-primary' >Edit</Link>
+                <Link to={routes.users+commonRoute.singleSlash+user.id} className='btn btn-primary' >Edit</Link>
                 {'\u00A0'}
                 {'\u00A0'}
                 <button className='btn btn-danger'>Delete</button>
@@ -78,7 +78,7 @@ const Users = () => {
 
                                 </div>
                                 <div className="col-auto">
-                                    <Link to={routes.users+commonRoute.action} className="btn btn-primary ms-2">
+                                    <Link to={routes.users+commonRoute.newRecord} className="btn btn-primary ms-2">
                                         Add Admin
                                     </Link>
 
@@ -88,9 +88,8 @@ const Users = () => {
                         </div>
                     </div>
 
-                    <div className="table-responsive" id='myTable'>
-                        <DataTable columns={columns} data={users} pagination={true} selectableRows={true} expandableRows={true} expandableRowsComponent={ExpandedComponent} fixedHeader={true}/>
-
+                    <div className="table-responsive">
+                        <DataTable columns={columns} data={users}  pagination={true} selectableRows={true} expandableRows={true} expandableRowsComponent={ExpandedComponent} fixedHeader={true}/>
                     </div>
                 </div>
             </div>

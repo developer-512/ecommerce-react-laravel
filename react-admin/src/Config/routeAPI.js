@@ -1,6 +1,6 @@
 // Routes for backend
-let admin='/admin'
-let routeAPI ={
+const admin='/admin'
+const routeAPI ={
     admin:admin,
     users:admin+'/users',
     logout:admin+'/logout',
