@@ -19,6 +19,11 @@ class AuthController extends Controller
             ],422);
 
         }
+//        if (Auth::user()->status()==1){
+//            return response([
+//                'message'=>'You are not allowed to access an Admin',
+//            ],423);
+//        }
         /** @var User $user */
         $user=Auth::user();
         $token=$user->createToken('main')->plainTextToken;

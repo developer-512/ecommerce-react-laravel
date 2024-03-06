@@ -4,6 +4,7 @@ namespace App\Http\Resources\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class UserResource extends JsonResource
 {
@@ -17,7 +18,9 @@ class UserResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'userId'=>Auth::id(),
             'name'=>$this->name,
+            'status'=>$this->status,
             'email'=>$this->email,
             'created_at'=>$this->created_at->format('d-m-Y'),
         ];

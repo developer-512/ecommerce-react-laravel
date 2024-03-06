@@ -5,9 +5,11 @@ import routeAPI from "../../Config/routeAPI.js";
 import routes from "../../Config/route.js";
 import DataTable from 'react-data-table-component';
 import commonRoute from "../../Config/commonRoute.js";
+// import LoginUser from "../../Config/userInfo.js";
 
 const Users = () => {
     const [users,setUsers]=useState([]);
+
     useEffect(() => {
         getUsers();
     }, []);
@@ -17,11 +19,20 @@ const Users = () => {
         axiosClient.get(routeAPI.users)
             .then(({data})=>{
                 setUsers(data.data);
-                console.log(users);
             })
             .catch((err)=>{
                 const response = err.response;
                 alert('Status: '+response.status)
+            })
+    }
+
+    function deleteUser(userId) {
+        if (!window.confirm('Really want to delete this user?')){
+            return
+        }
+        axiosClient.delete(routeAPI.users+commonRoute.singleSlash+userId)
+            .then(()=>{
+                getUsers();
             })
     }
 
@@ -35,6 +46,11 @@ const Users = () => {
         {
             name:'Name',
             selector:user => user.name
+        },
+        {
+            name: 'Status',
+            selector:user => (user.status===1)?(<span data-tag="allowRowEvents" className='text-success'>Active</span>):(<span data-tag="allowRowEvents" className="text-danger">Inactive</span>),
+            sortable: true
         },
         {
             name: 'Email',
@@ -51,7 +67,7 @@ const Users = () => {
                 <Link to={routes.users+commonRoute.singleSlash+user.id} className='btn btn-primary' >Edit</Link>
                 {'\u00A0'}
                 {'\u00A0'}
-                <button className='btn btn-danger'>Delete</button>
+                <button className='btn btn-danger' onClick={ev=>deleteUser(user.id)}>Delete</button>
             </div>)
         }
 
@@ -74,6 +90,7 @@ const Users = () => {
 
                                     <h1 className="header-title text-truncate">
                                         Admin Members
+                                        {/*{LoginUser.id}*/}
                                     </h1>
 
                                 </div>

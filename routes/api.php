@@ -16,21 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::group(['prefix'=>'admin'],function (){
-//    Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//        return $request->user();
-//    });
+Route::group(['prefix'=>'admin'],function (){
+    Route::middleware('auth:sanctum')->group(function (){
+        Route ::get('/user', function (Request $request) {
+            return $request->user();
+        });
 
-Route::middleware('auth:sanctum')->group(function (){
-    Route ::get('/user', function (Request $request) {
-        return $request->user();
+        Route::post('/logout',[AuthController::class,'Logout'])->name('admin.logout');
+        Route::apiResource('/users',UserController::class);
     });
 
-    Route::post('/admin/logout',[AuthController::class,'Logout'])->name('admin.logout');
-    Route::apiResource('/admin/users',UserController::class);
+    Route::post('/login',[AuthController::class,'Login'])->name('admin.login');
+
 });
 
-    Route::post('/admin/login',[AuthController::class,'Login'])->name('admin.login');
-//    Route::post('/admin/logout',[AuthController::class,'Logout'])->name('logout');
-//});
+
+
 

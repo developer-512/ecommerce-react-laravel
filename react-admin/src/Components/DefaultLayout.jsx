@@ -14,12 +14,12 @@ function DefaultLayout() {
     useEffect(() => {
         let bodyElement = document.body;
         bodyElement.classList.remove('d-flex', 'align-items-center', 'bg-auth', 'border-top', 'border-top-2', 'border-primary');
+
     }, []);
     let url='';
     // Getting URL
     useEffect(() => {
         url=window.location.pathname;
-        console.log(url);
     }, []);
 
     function LogoutAdmin(ev) {
@@ -36,6 +36,13 @@ function DefaultLayout() {
                 })
         }
     }
+
+    useEffect(() => {
+        axiosClient.get(routeAPI.user)
+            .then(({data})=>{
+                setUser(data);
+            })
+    }, []);
     return (
         <>
 
@@ -120,6 +127,7 @@ function DefaultLayout() {
                             </li>
                         </ul>
                             <div className="mt-auto"></div>
+                        <h3>{user.name}</h3>
                         <div className="navbar-user d-none d-md-flex" id="sidebarUser">
                             <button className='btn btn-danger' onClick={LogoutAdmin}><i className='fe fe-log-out'></i>Logout</button>
                             {/*<Link to={}></Link>*/}
