@@ -5,15 +5,28 @@ import routeAPI from "../../Config/routeAPI.js";
 import routes from "../../Config/route.js";
 import DataTable from 'react-data-table-component';
 import commonRoute from "../../Config/commonRoute.js";
+import {useStateContext} from "../../Context/ContextProvider.jsx";
+// import LoginUser from "../../Config/userInfo.js";
 // import LoginUser from "../../Config/userInfo.js";
 
 const Users = () => {
     const [users,setUsers]=useState([]);
-
+    const {user,setUser}=useStateContext();
     useEffect(() => {
         getUsers();
     }, []);
 
+    useEffect(() => {
+        axiosClient.get(routeAPI.user)
+            .then(({data})=>{
+                setUser(data);
+            })
+    }, []);
+
+    const LoginUser={
+        id:user.id,
+        name:user.name,
+    }
 
     function getUsers ()  {
         axiosClient.get(routeAPI.users)
@@ -63,7 +76,7 @@ const Users = () => {
         },
         {
             name: 'Action',
-            selector:user=>(<div className='d-flex'>
+            selector:user=>user.id===LoginUser.id?'You cannot Perform Action on Your self':(<div className='d-flex'>
                 <Link to={routes.users+commonRoute.singleSlash+user.id} className='btn btn-primary' >Edit</Link>
                 {'\u00A0'}
                 {'\u00A0'}
@@ -72,6 +85,7 @@ const Users = () => {
         }
 
     ];
+
     const ExpandedComponent = ({ data }) => <pre>{data.name}</pre>;
     return (
         <div className="container-fluid">
@@ -90,7 +104,7 @@ const Users = () => {
 
                                     <h1 className="header-title text-truncate">
                                         Admin Members
-                                        {/*{LoginUser.id}*/}
+                                        {LoginUser.id}
                                     </h1>
 
                                 </div>

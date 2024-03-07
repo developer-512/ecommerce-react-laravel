@@ -18,7 +18,6 @@ class UserResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'userId'=>Auth::id(),
             'name'=>$this->name,
             'status'=>$this->status,
             'email'=>$this->email,

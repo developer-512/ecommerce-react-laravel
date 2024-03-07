@@ -43,6 +43,10 @@ function DefaultLayout() {
                 setUser(data);
             })
     }, []);
+    const LoginUser={
+        id:user.id,
+        name:user.name,
+    }
     return (
         <>
 
