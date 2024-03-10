@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {Navigate, useNavigate, useParams} from "react-router-dom";
 import axiosClient from "../../axios-client.js";
 import routeAPI from "../../Config/routeAPI.js";
 import commonRoute from "../../Config/commonRoute.js";
 import routes from "../../Config/route.js";
+import userInfo from "../../Config/userInfo.js";
 
 const ActionUsers = () => {
     let {id} = useParams();
@@ -17,12 +18,16 @@ const ActionUsers = () => {
     });
 
     if (id){
+        if (id===userInfo().id) {
+            return <Navigate to={routes.users} />
+        }
         useEffect(() => {
+
             axiosClient.get(routeAPI.users+commonRoute.singleSlash+`${id}`)
                 .then(({data})=>{
                     // setLoading(false);
                     setUser(data);
-                    console.log(data.name);
+
                 })
                 .catch(()=>{
                     // setLoading(false);
@@ -33,6 +38,7 @@ const ActionUsers = () => {
     function storeUser(ev) {
           ev.preventDefault();
         if (user.id){
+
             axiosClient.put(routeAPI.users+commonRoute.singleSlash+`${user.id}`,user)
                 .then(()=>{
                     navigate(routes.users)

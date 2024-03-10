@@ -6,6 +6,7 @@ import routes from "../../Config/route.js";
 import DataTable from 'react-data-table-component';
 import commonRoute from "../../Config/commonRoute.js";
 import {useStateContext} from "../../Context/ContextProvider.jsx";
+import userInfo from "../../Config/userInfo.js";
 // import LoginUser from "../../Config/userInfo.js";
 // import LoginUser from "../../Config/userInfo.js";
 
@@ -39,8 +40,14 @@ const Users = () => {
             })
     }
 
+
+
     function deleteUser(userId) {
-        if (!window.confirm('Really want to delete this user?')){
+        // if (userId===userInfo().id){
+        //     return;
+        // }
+
+        if (!window.confirm('Really want to delete this user?') ){
             return
         }
         axiosClient.delete(routeAPI.users+commonRoute.singleSlash+userId)
@@ -76,7 +83,7 @@ const Users = () => {
         },
         {
             name: 'Action',
-            selector:user=>user.id===LoginUser.id?'You cannot Perform Action on Your self':(<div className='d-flex'>
+            selector:user=>user.id===userInfo().id?'':(<div className='d-flex'>
                 <Link to={routes.users+commonRoute.singleSlash+user.id} className='btn btn-primary' >Edit</Link>
                 {'\u00A0'}
                 {'\u00A0'}
