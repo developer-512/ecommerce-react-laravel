@@ -8,9 +8,8 @@ import routeAPI from "../Config/routeAPI.js";
 import routes from "../Config/route.js";
 function DefaultLayout() {
     const {user,token,setUser,setToken}=useStateContext();
-    if (!token){
-        return <Navigate to={routes.login}/>
-    }
+    if (!token) return <Navigate to={routes.login}/>;
+
     useEffect(() => {
         let bodyElement = document.body;
         bodyElement.classList.remove('d-flex', 'align-items-center', 'bg-auth', 'border-top', 'border-top-2', 'border-primary');
@@ -43,10 +42,7 @@ function DefaultLayout() {
                 setUser(data);
             })
     }, []);
-    const LoginUser={
-        id:user.id,
-        name:user.name,
-    }
+
     return (
         <>
 
@@ -131,7 +127,6 @@ function DefaultLayout() {
                             </li>
                         </ul>
                             <div className="mt-auto"></div>
-                        <h3>{user.name}</h3>
                         <div className="navbar-user d-none d-md-flex" id="sidebarUser">
                             <button className='btn btn-danger' onClick={LogoutAdmin}><i className='fe fe-log-out'></i>Logout</button>
                             {/*<Link to={}></Link>*/}
