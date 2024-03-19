@@ -4,7 +4,11 @@ import axiosClient from "../../axios-client.js";
 import routeAPI from "../../Config/routeAPI.js";
 import commonRoute from "../../Config/commonRoute.js";
 import routes from "../../Config/route.js";
+<<<<<<< HEAD
 import {useStateContext} from "../../Context/ContextProvider.jsx";
+=======
+import userInfo from "../../Config/userInfo.js";
+>>>>>>> 2e100552e0648bae53dd7fbfc5ad3e27483ea90f
 
 const ActionUsers = () => {
     let {id} = useParams();
@@ -19,6 +23,7 @@ const ActionUsers = () => {
     });
 
     if (id){
+<<<<<<< HEAD
         if (id===user.id){
             return <Navigate to={routes.users}/>
         }
@@ -28,6 +33,18 @@ const ActionUsers = () => {
                     // setLoading(false);
                     setAdmin(data);
                     // console.log(data.name);
+=======
+        if (id===userInfo().id) {
+            return <Navigate to={routes.users} />
+        }
+        useEffect(() => {
+
+            axiosClient.get(routeAPI.users+commonRoute.singleSlash+`${id}`)
+                .then(({data})=>{
+                    // setLoading(false);
+                    setUser(data);
+
+>>>>>>> 2e100552e0648bae53dd7fbfc5ad3e27483ea90f
                 })
                 .catch(()=>{
                     // setLoading(false);
@@ -37,12 +54,18 @@ const ActionUsers = () => {
 
     function storeUser(ev) {
           ev.preventDefault();
+<<<<<<< HEAD
         if (admin.id){
             if (admin.id===user.id){
                 alert('Cannot Update your self from here');
                 return navigate(routes.users);
             }
             axiosClient.put(routeAPI.users+commonRoute.singleSlash+admin.id,admin)
+=======
+        if (user.id){
+
+            axiosClient.put(routeAPI.users+commonRoute.singleSlash+`${user.id}`,user)
+>>>>>>> 2e100552e0648bae53dd7fbfc5ad3e27483ea90f
                 .then(()=>{
                     navigate(routes.users)
                     // setNotification('Users successfully updated');

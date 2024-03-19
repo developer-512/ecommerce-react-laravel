@@ -13,7 +13,6 @@ function DefaultLayout() {
     useEffect(() => {
         let bodyElement = document.body;
         bodyElement.classList.remove('d-flex', 'align-items-center', 'bg-auth', 'border-top', 'border-top-2', 'border-primary');
-
     }, []);
     let url='';
     // Getting URL
